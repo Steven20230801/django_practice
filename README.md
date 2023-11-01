@@ -1,8 +1,18 @@
+mac 
+```
 python3 -m venv myenv
 source myenv/bin/activate
+```
+
+windows
+```
+virtualenv myenv
+myenv\Scripts\activate.bat
+```
+
 pip install django
 pip install crispy-bootstrap4
-pip install crispy-forms
+pip install django-crispy-forms
 django-admin startproject data_website
 cd data_website
 python manage.py startapp users

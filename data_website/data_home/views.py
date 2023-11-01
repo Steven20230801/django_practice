@@ -14,4 +14,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def print123(request):
-    return render(request, "date_home/home.html")
+    return render(request, "data_home/home.html")

@@ -1,22 +1,27 @@
 python3 -m venv myenv
 source myenv/bin/activate
 pip install django
+pip install crispy-bootstrap4
+pip install crispy-forms
 django-admin startproject data_website
 cd data_website
 python manage.py startapp users
-# Data_Website
+python manage.py startapp data_home
+# data_home
+放置靜態文件的app(templates, static)
 ## templates
 ### base.html
-{% static 'data_website/main.css' %} -> /static/data_website/main.css
+{% static 'data_home/main.css' %} -> /static/data_home/main.css
 ## static
-data_website/setting.py 
+data_home/setting.py 
 STATIC_URL = "static/" -> 静态文件对应的URL路径是/static/。
 # Users
+客戶註冊功能
 ## data_website/settings.py
 新增app功能
 ```
 INSTALLED_APPS = [
-    "users"
+    "users.app...."
 ]
 ```
 ## models.py 
@@ -70,3 +75,5 @@ urlpatterns = [
   path('get/<int:id>/', views.get_user),
 ]
 ```
+
+# Crispy-forms

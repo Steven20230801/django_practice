@@ -33,6 +33,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "data_home.apps.DataHomeConfig",
+    "search_accounts.apps.SearchAccountsConfig",
     "crispy_forms",
     "crispy_bootstrap4",
     "django.contrib.admin",

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from data_home.views import home, print123
 from users.views import register
+from search_accounts.views import request_accounts, request_accounts_model
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -35,4 +36,6 @@ urlpatterns = [
         auth_views.LogoutView.as_view(template_name="users/logout.html"),
         name="logout",
     ),
+    path("accounts/", request_accounts, name="request_accounts"),
+    path("accounts_model/", request_accounts_model, name="request_accounts_model"),
 ]

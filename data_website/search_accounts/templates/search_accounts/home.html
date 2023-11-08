@@ -1,0 +1,30 @@
+{% extends 'data_home/base.html' %}
+<style>
+    .bold {
+        font-weight: bold;
+      }
+</style>
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="form-control">
+            
+            {{ form.as_table }}
+            {% if form.errors %}
+            <p style="font-weight: bold;">Please correct the following errors:</p>
+            <ul>
+              {% for field in form %}
+                {% if field.errors %}
+                <li style="color: red">{{ field.label }} - {{ field.errors|striptags }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-success" name="{{ button_name }}" type="submit" value="單一帳號搜尋"/>
+            </div> 
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_for_django
+    restart: always
+    environment:
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3300:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - django_network
+
+  web:
+    build: .  # 指定使用當前目錄中的 Dockerfile 來構建映像
+    container_name: django
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    working_dir: /code
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_NAME: mydatabase
+      DATABASE_USER: myuser
+      DATABASE_PASSWORD: mypassword
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+    networks:
+      - django_network
+
+volumes:
+  db_data:
+
+networks:
+  django_network:
